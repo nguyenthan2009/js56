@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="400px" style="border:1px solid #d3d3d3;"></canvas>
+<p id="result"></p>
+<script>
+    let res = document.getElementById('result');
+    function Rectangle(chieudai,chieurong){
+        this.chieudai= chieudai;
+        this.chieurong= chieurong;
+        this.dientich= function (){
+            return this.chieudai*this.chieurong
+        }
+        this.chuvi= function(){
+            return 2*(this.chieudai + this.chieurong)
+        }
+    }
+
+    Rectangle.prototype.display = function () {
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
+        context.rect(20, 20, this.chieurong, this.chieudai);
+        context.stroke();
+    }
+    function createRec() {
+        let rec = new Rectangle(50,80);
+        let chuvi= rec.chuvi()
+        let dientich = rec.dientich()
+        res.innerHTML = `chuvi = ${chuvi}, dientich = ${dientich}`
+        rec.display();
+    }
+    createRec();
+</script>
+
+</body>
+</html>
